@@ -1,6 +1,7 @@
 package main
 
 // A command line tool to generate QR codes from a variety of inputs, i.e.: text, URL, etc.
+// Based on sample tool from github.com/skip2/go-qrcode lib
 
 import (
 	"flag"
@@ -25,7 +26,6 @@ func main() {
 	help := flag.Bool("h", false, "show help")
 	foreGroundColor := flag.String("fg", "000000", "foreground color")
 	backGroundColor := flag.String("bg", "ffffff", "background color")
-	//squaresColor := flag.String("sq", "000000", "squares color")
 
 	flag.Usage = func() {
 		showUsage()
@@ -158,6 +158,12 @@ Usage:
 
        qr-gen "homepage: https://github.com/skip2/go-qrcode" > out.png
 
+  3. Content can also be provided from a file or STDIN:
+
+       qr-gen -f README.md -o readme.png
+       cat card.vcf | qr-gen -o card.png
+       cat card.vcf | qr-gen | display  # display cat output on X server
+
 `)
 	if err != nil {
 		return
@@ -176,5 +182,3 @@ func isInputFromPipe() bool {
 	fileInfo, _ := os.Stdin.Stat()
 	return fileInfo.Mode()&os.ModeCharDevice == 0
 }
-
-//SHA256:uNiVztksCsDhcc0u9e8BujQXVUpKZIDTMczCvj3tD2s.
