@@ -1,6 +1,6 @@
 A command line tool in Golang to generate QR codes from a variety of inputs, i.e.: text, URL, etc.
 
-Based on the sample app in https://github.com/skip2/go-qrcode by Tom Harwood.
+Based on the sample app in https://github.com/skip2/go-qrcode by [Tom Harwood](https://github.com/skip2).
 
 What was changed:
 
