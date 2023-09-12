@@ -13,7 +13,7 @@ $ qr "Hello World" -o ~/Desktop/qr.png # Generates a QR code with the text "Hell
 ```
 
 ```bash
-$ qr -f file.txt -o ~/Desktop/qr.png -i 512 # Generates a QR code with the contents of the file "file.txt", save it 
+$ qr -f file.txt -o ~/Desktop/qr.png -s 512 # Generates a QR code with the contents of the file "file.txt", save it 
                                             # to a file named "qr.png" in the Desktop directory, with a size 
                                             # of 512x512 pixels
 ```
