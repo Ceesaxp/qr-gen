@@ -33,8 +33,6 @@ macos: ## Build only macOS ARM64 binaries and put the output binary into ./pkg/ 
 	GOARCH=arm64 GOOS=darwin go build -o ${BINARY_NAME}-darwin-arm64 ${SRC_NAME}
 	${CP} ${BINARY_NAME}-darwin-arm64 ./${BIN_DIR}/${BINARY_NAME}
 	${RM} ${BINARY_NAME}-darwin-arm64
-	${CP} ${CONFIG_FILE} ./${BIN_DIR}/${CONFIG_FILE}
-	${CP} ${README_FILE} ./${BIN_DIR}/${README_FILE}
 
 package: ## Package your project and put the output binary into local dir
 	${CP} ${BINARY_NAME}-{darwin-x86_64,linux,windows,darwin-arm64} ./${BIN_DIR}/

@@ -19,12 +19,12 @@ func main() {
 	outFile := flag.String("o", "", "out PNG file prefix, empty for stdout")
 	size := flag.Int("s", 256, "image size (pixel)")
 	textArt := flag.Bool("t", false, "print as text-art on stdout")
-	negative := flag.Bool("i", false, "invert black and white")
+	negative := flag.Bool("i", false, "invert background and foreground colors")
 	disableBorder := flag.Bool("d", false, "disable QR Code border")
 	inpFile := flag.String("f", "", "input file, empty for stdin")
 	help := flag.Bool("h", false, "show help")
-	foreGroundColor := flag.String("fg", "000000", "foreground color, defaults to black (#000000)")
-	backGroundColor := flag.String("bg", "ffffff", "background color, defaults to white (#ffffff)")
+	foreGroundColor := flag.String("fg", "000000", "foreground color")
+	backGroundColor := flag.String("bg", "ffffff", "background color")
 	//squaresColor := flag.String("sq", "000000", "squares color")
 
 	flag.Usage = func() {
@@ -130,7 +130,7 @@ func checkError(err error) {
 	if err != nil {
 		_, err := fmt.Fprintf(os.Stderr, "%s\n", err)
 		if err != nil {
-			checkError(err)
+			fmt.Println(err)
 		}
 		os.Exit(1)
 	}
