@@ -2,8 +2,11 @@ GOCMD=go
 GOTEST=$(GOCMD) test
 GOVET=$(GOCMD) vet
 BINARY_NAME=qr-gen
-SRC_NAME=qr-gen.go
+SRC_NAME=qr-gen
 BIN_DIR=bin
+RM=@rm -f
+CP=@cp
+MV=@mv
 
 VERSION?=0.1.0
 
@@ -15,7 +18,7 @@ WHITE  := $(shell tput -Txterm setaf 7)
 CYAN   := $(shell tput -Txterm setaf 6)
 RESET  := $(shell tput -Txterm sgr0)
 
-.PHONY: all test build vendor
+.PHONY: all test build package
 
 all: help
 
@@ -28,24 +31,25 @@ build: ## Build your project and put the output binary into local dir
 
 macos: ## Build only macOS ARM64 binaries and put the output binary into ./pkg/ directory
 	GOARCH=arm64 GOOS=darwin go build -o ${BINARY_NAME}-darwin-arm64 ${SRC_NAME}
-	cp ${BINARY_NAME}-darwin-arm64 ./${BIN_DIR}/${BINARY_NAME}
-	rm ${BINARY_NAME}-darwin-arm64
-	cp ${CONFIG_FILE} ./${BIN_DIR}/${CONFIG_FILE}
-	cp ${README_FILE} ./${BIN_DIR}/${README_FILE}
+	${CP} ${BINARY_NAME}-darwin-arm64 ./${BIN_DIR}/${BINARY_NAME}
+	${RM} ${BINARY_NAME}-darwin-arm64
+	${CP} ${CONFIG_FILE} ./${BIN_DIR}/${CONFIG_FILE}
+	${CP} ${README_FILE} ./${BIN_DIR}/${README_FILE}
 
 package: ## Package your project and put the output binary into local dir
-	cp ${BINARY_NAME}-{darwin-x86_64,linux,windows,darwin-arm64} ./${BIN_DIR}/
-	rm ${BINARY_NAME}-{darwin-x86_64,linux,windows,darwin-arm64}
+	${CP} ${BINARY_NAME}-{darwin-x86_64,linux,windows,darwin-arm64} ./${BIN_DIR}/
+	${RM} ${BINARY_NAME}-{darwin-x86_64,linux,windows,darwin-arm64}
+	${MV} ${BIN_DIR}/${BINARY_NAME}-windows ${BIN_DIR}/${BINARY_NAME}-windows.exe
 
 run: build package
 	./${BINARY_NAME}
 
 clean: ## Remove build related file
-	go clean
-	rm ${BINARY_NAME}-darwin-x86_64
-	rm ${BINARY_NAME}-linux
-	rm ${BINARY_NAME}-windows
-	rm ${BINARY_NAME}-darwin-arm64
+	@go clean
+	${RM} ${BIN_DIR}/${BINARY_NAME}-darwin-x86_64
+	${RM} ${BIN_DIR}/${BINARY_NAME}-linux
+	${RM} ${BIN_DIR}/${BINARY_NAME}-windows*
+	${RM} ${BIN_DIR}/${BINARY_NAME}-darwin-arm64
 
 vendor: ## Copy of all packages needed to support builds and tests in the vendor directory
 	$(GOCMD) mod vendor
