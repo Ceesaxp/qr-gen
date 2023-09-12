@@ -1,5 +1,13 @@
 A command line tool in Golang to generate QR codes from a variety of inputs, i.e.: text, URL, etc.
 
+Based on the sample app in https://github.com/skip2/go-qrcode
+
+What was changed:
+
+1. Read file an/or STDIN as input (not only text provided)
+2. Assign foreground/backgreound colors for the QR generated
+3. Check for the content length not to exceed QR limit of 4296 chars
+
 ## Sample use
 
 ```bash
@@ -35,3 +43,9 @@ $ qr -u https://github.com -o ~/Desktop/qr.png # Generates a QR code with the UR
 Download and copy a binary anywhere in your path.
 
 ### From source
+
+Checkout the repo and run
+
+```bash
+$ go build .
+```
