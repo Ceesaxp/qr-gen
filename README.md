@@ -11,29 +11,33 @@ What was changed:
 ## Sample use
 
 ```bash
-$ qr "Hello World" # Generates a QR code with the text "Hello World", 
-                   # save it to a file named "qr.png" in the current directory
+# Generates a QR code with the text "Hello World", save it to a file named "qr.png" 
+# in the current directory
+$ qr "Hello World"
 ```
 
 ```bash
-$ qr "Hello World" -o ~/Desktop/qr.png # Generates a QR code with the text "Hello World", 
-                                       # save it to a file named "qr.png" in the Desktop directory
+# Generates a QR code with the text "Hello World", save it to a file named "qr.png" 
+# in the Desktop directory
+$ qr "Hello World" -o ~/Desktop/qr.png
 ```
 
 ```bash
-$ qr -f file.txt -o ~/Desktop/qr.png -s 512 # Generates a QR code with the contents of the file "file.txt", save it 
-                                            # to a file named "qr.png" in the Desktop directory, with a size 
-                                            # of 512x512 pixels
+# Generates a QR code with the contents of the file "file.txt", save it to a file 
+# named "qr.png" in the Desktop directory, with a size of 512x512 pixels
+$ qr -f file.txt -o ~/Desktop/qr.png -s 512 
 ```
 
 ```bash
-$ cat file.txt | qr -o ~/Desktop/qr.png # Generates a QR code with the contents of the file "file.txt", save it to a 
-                                        # file named "qr.png" in the Desktop directory
+# Generates a QR code with the contents of the file "file.txt", save it to a 
+# file named "qr.png" in the Desktop directory
+$ cat file.txt | qr -o ~/Desktop/qr.png
 ```
 
 ```bash
-$ qr -u https://github.com -o ~/Desktop/qr.png # Generates a QR code with the URL "https://github.com", 
-                                               # save it to a file named "qr.png" in the Desktop directory
+# Generates a QR code with the URL "https://github.com", save it to a file
+# named "qr.png" in the Desktop directory
+$ qr -u https://github.com -o ~/Desktop/qr.png 
 ```
 
 ## Installation
